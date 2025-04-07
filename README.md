@@ -51,17 +51,17 @@ This score indicates that while the model captures the general structure and app
 
 ## Usage
 
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/gravlens-diff.git
-cd gravlens-diff
+### Running in Google Colab
+The easiest way to use this model is through our [Google Colab Notebook](https://colab.research.google.com/drive/1y8B_1s7pK8wpR3YxtELKp8qziEDh4edo?usp=sharing), which has all dependencies pre-installed and provides a user-friendly interface for generating samples.
 
-# Install dependencies
-pip install -r requirements.txt
-```
+1. Open the Colab notebook using the link above
+2. Navigate to the "Inference" section
+3. Run the cells to download the model and generate samples
+4. Adjust parameters as needed to customize generation
 
-### Generating Samples
+### Using the Pretrained Model
+If you want to use the model in your own environment:
+
 ```python
 from huggingface_hub import hf_hub_download
 import torch
@@ -82,24 +82,5 @@ samples = diffusion.sample(n_samples=16)
 ## Future Work
 
 - Fine-tuning on larger and more diverse datasets
-- Implementing classifier-free guidance for more controlled generation
 - Exploring conditional generation based on specific lensing parameters
 - Scaling up the model for higher resolution outputs
-
-## Citation
-
-If you use this model in your research, please cite:
-
-```
-@misc{gravlens-diff2023,
-  author = {Your Name},
-  title = {GravLens-Diff: Diffusion Models for Gravitational Lensing Simulation},
-  year = {2023},
-  publisher = {GitHub},
-  howpublished = {\url{https://github.com/yourusername/gravlens-diff}}
-}
-```
-
-## License
-
-[MIT License](LICENSE)
