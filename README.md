@@ -58,39 +58,39 @@ The model uses a UNet architecture with:
      │
      ▼
 ┌─────────┐
-│  Conv2D  │
+│  Conv2D │
 └────┬────┘
      │
      ▼
 ┌─────────┐
-│GroupNorm │
+│GroupNorm│
 └────┬────┘
      │
      ▼
 ┌─────────┐
-│  SiLU    │
+│  SiLU   │
 └────┬────┘
      │
      ▼
 ┌─────────┐    ┌───────────┐
-│  Conv2D  │    │TimeEmbedding│
+│  Conv2D │   │TimeEmbedding│
 └────┬────┘    └─────┬─────┘
      │               │
      └───────┬───────┘
              │
              ▼
         ┌─────────┐
-        │GroupNorm │
+        │GroupNorm│
         └────┬────┘
              │
              ▼
         ┌─────────┐
-        │  SiLU    │
+        │  SiLU   │
         └────┬────┘
              │
              ▼
         ┌─────────┐
-        │  + Input │
+        │ + Input │
         └─────────┘
              │
              ▼
@@ -103,42 +103,42 @@ The model uses a UNet architecture with:
          │
          ▼
 ┌──────────────────┐
-│ Layer Normalization │
+│Layer Normalization│
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│MultiheadAttention │
+│MultiheadAttention│
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│   + Input         │
+│   + Input        │
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│ Layer Normalization │
+│Layer Normalization│
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│     Linear        │
+│     Linear       │
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│      GELU         │
+│      GELU        │
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│     Linear        │
+│     Linear       │
 └──────┬───────────┘
        │
        ▼
 ┌──────────────────┐
-│   + Input         │
+│   + Input        │
 └──────┬───────────┘
        │
        ▼
@@ -156,15 +156,15 @@ The noise schedule uses a linear beta schedule from 1e-4 to 0.02 over 1000 times
 ```
            Forward Process (Adding Noise)
 ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐
-│ Original │ ──► │ Step t=1 │ ──► │ Step t=2 │ ──► │   ...   │ ──► ┌─────────┐
-│  Image   │      │ (Noisy) │      │ (Noisier)│      │         │      │Pure Noise│
+│ Original│ ──►  │ Step t=1│ ──►  │Step t=2 │ ──►  │   ...   │ ──►  ┌─────────┐
+│  Image  │      │ (Noisy) │      │(Noisier)│      │         │      │Pure Noise│
 └─────────┘      └─────────┘      └─────────┘      └─────────┘      └─────────┘
            
            Reverse Process (Denoising via Model)
 ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐
-│Pure Noise│ ──► │ Step t=T │ ──► │Step t=T-1│ ──► │   ...   │ ──► ┌─────────┐
-│          │      │ (Predict)│      │(Predict)│      │         │      │Generated │
-└─────────┘      └─────────┘      └─────────┘      └─────────┘      │  Image   │
+│Pure Noise│ ──► │Step t=T │ ──► │Step t=T-1│ ──►  │   ...   │ ──►  ┌─────────┐
+│         │      │(Predict)│      │(Predict)│      │         │      │Generated│
+└─────────┘      └─────────┘      └─────────┘      └─────────┘      │  Image  │
                                                                     └─────────┘
 ```
 
